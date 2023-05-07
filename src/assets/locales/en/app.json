@@ -47,7 +47,8 @@
     "load-iconpack": {
       "description": "Would you like to load an existing icon pack?",
       "load-iconpack": "Load Icon Pack",
-      "failed-to-load-iconpack": "Failed to load the icon pack."
+      "failed-to-load-iconpack": "Failed to load the icon pack.",
+      "drop-to-load-iconpack": "When drop a file in the screen, it loads the icon pack."
     }
   },
   "iconpack-editor": {

@@ -84,7 +84,7 @@
     on:drop|preventDefault={onFileDrop}
   >
     <div class="message-wrapper">
-      <span class="caption">画面内にファイルをドロップするとアイコンパックを読み込みます。</span>
+      <span class="caption">{$t("start-page.load-iconpack.drop-to-load-iconpack")}</span>
     </div>
   </div>
 </Modal>

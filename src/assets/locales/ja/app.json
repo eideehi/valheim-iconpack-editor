@@ -47,7 +47,8 @@
     "load-iconpack": {
       "description": "既存のアイコンパックを読み込みますか？",
       "load-iconpack": "アイコンパックを読み込む",
-      "failed-to-load-iconpack": "アイコンパックの読み込みに失敗しました。"
+      "failed-to-load-iconpack": "アイコンパックの読み込みに失敗しました。",
+      "drop-to-load-iconpack": "画面内にファイルをドロップするとアイコンパックを読み込みます。"
     }
   },
   "iconpack-editor": {
