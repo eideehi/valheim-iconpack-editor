@@ -1,0 +1,73 @@
+:root {
+    --bg-color: 240 238 238;
+    --bg-color-light: 254 252 252;
+    --bg-color-dark: 212 210 210;
+    --border-color: 176 176 176;
+    --border-color-light: 208 208 208;
+    --border-color-dark: 128 128 128;
+    --border-color-hover: var(--border-color-dark);
+    --text-color: 96 96 96;
+    --text-color-light: 144 144 144;
+    --text-color-dark: 48 48 48;
+    --text-color-hover: var(--text-color-dark);
+    --text-color-link: 0 153 255;
+
+    --ui-color-white: 230 230 230;
+    --ui-color-red: 255 80 80;
+    --ui-color-green: 46 204 64;
+    --ui-color-blue: 0 153 255;
+    --ui-color-yellow: 255 220 0;
+}
+
+html.dark {
+    --bg-color: 42 44 46;
+    --bg-color-light: 69 71 71;
+    --bg-color-dark: 25 27 27;
+    --border-color: 144 144 144;
+    --border-color-light: 192 192 192;
+    --border-color-dark: 96 96 96;
+    --border-color-hover: var(--border-color-light);
+    --text-color: 192 192 192;
+    --text-color-light: 240 240 240;
+    --text-color-dark: 144 144 144;
+    --text-color-hover: var(--text-color-light);
+    --text-color-link: 0 102 255;
+
+    --ui-color-white: 192 192 192;
+    --ui-color-red: 178 34 34;
+    --ui-color-green: 0 128 0;
+    --ui-color-blue: 0 102 153;
+    --ui-color-yellow: 255 215 0;
+}
+
+.markdown h1 {
+    @apply text-2xl my-1;
+}
+
+.markdown h2 {
+    @apply text-xl my-1;
+}
+
+.markdown h3 {
+    @apply text-lg mt-4 mb-0.5;
+}
+
+.markdown p {
+    @apply my-1.5;
+}
+
+.markdown a {
+    @apply text-link;
+}
+
+.markdown code {
+    @apply bg-dark rounded px-2 py-0.5;
+}
+
+.markdown ul {
+    @apply flex flex-col gap-y-1.5;
+}
+
+.markdown li {
+    @apply list-disc ml-6;
+}

@@ -1,0 +1,16 @@
+@tailwind base;
+
+@layer base {
+    html {
+        @apply font-serif font-normal antialiased;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+    }
+
+    body {
+        @apply bg-base-color text-base text-base-color overflow-hidden;
+    }
+}
+
+@tailwind components;
+@tailwind utilities;

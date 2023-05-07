@@ -1,0 +1,10 @@
+type Nullable<T> = T | null | undefined;
+type Function0<R> = () => R;
+type Function1<A, R> = (arg: A) => R;
+type Function2<A1, A2, R> = (arg1: A1, arg2: A2) => R;
+type Function3<A1, A2, A3, R> = (arg1: A1, arg2: A2, arg3: A3) => R;
+type Callback = () => void;
+type Callback1<A> = Function1<A, void>;
+type Callback2<A1, A2> = Function2<A1, A2, void>;
+type Callback3<A1, A2, A3> = Function3<A1, A2, A3, void>;
+type Predicate1<A> = Function1<A, boolean>;
