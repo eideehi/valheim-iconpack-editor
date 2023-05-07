@@ -9,4 +9,4 @@ image::docs/images/overview.png[Image - Overview]
 You can use the Valheim IconPack Editor from link:https://eideehi.github.io/valheim-iconpack-editor[this link].
 
 == License
-Automatics is developed and released under the MIT license. For the full text of the license, please see the link:./LICENSE[license file].
+Valheim IconPack Editor is developed and released under the MIT license. For the full text of the license, please see the link:./LICENSE[license file].
