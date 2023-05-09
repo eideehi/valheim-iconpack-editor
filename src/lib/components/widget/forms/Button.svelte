@@ -17,7 +17,7 @@
   {/if}
 </button>
 
-<style>
+<style lang="postcss">
   .button {
     @apply flex items-center justify-center gap-x-1 rounded border-2 border-base-color px-2 py-1.5 font-bold text-base-color;
   }

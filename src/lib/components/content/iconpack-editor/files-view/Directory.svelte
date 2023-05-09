@@ -41,7 +41,7 @@
   </ul>
 {/if}
 
-<style>
+<style lang="postcss">
   .directory {
     @apply inline-flex items-center gap-x-1 whitespace-pre;
   }

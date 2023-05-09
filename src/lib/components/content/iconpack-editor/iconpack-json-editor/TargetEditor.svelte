@@ -57,7 +57,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .target-editor {
     @apply flex flex-col gap-2.5;
   }

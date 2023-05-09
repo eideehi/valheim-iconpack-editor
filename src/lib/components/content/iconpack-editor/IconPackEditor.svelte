@@ -63,7 +63,7 @@
   <JsonView bind:ref={jsonView} {files} {json} />
 </div>
 
-<style>
+<style lang="postcss">
   .iconpack-editor {
     @apply flex h-full w-full select-none overflow-hidden;
   }

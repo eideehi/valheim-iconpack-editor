@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .editor-wrapper {
     @apply flex h-full flex-grow flex-col items-center overflow-y-auto;
   }

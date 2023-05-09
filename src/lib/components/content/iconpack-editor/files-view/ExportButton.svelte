@@ -24,7 +24,7 @@
   <a bind:this={download} download="{fileName}.zip" href="#download" />
 </div>
 
-<style>
+<style lang="postcss">
   .export-iconpack {
     @apply flex items-center justify-center p-0.5;
   }

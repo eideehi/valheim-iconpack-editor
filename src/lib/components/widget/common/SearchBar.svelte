@@ -11,7 +11,7 @@
   <input class="input" bind:value={keyword} type="text" />
 </div>
 
-<style>
+<style lang="postcss">
   .search {
     @apply flex;
   }

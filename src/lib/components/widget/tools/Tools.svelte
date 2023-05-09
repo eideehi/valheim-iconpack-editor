@@ -12,7 +12,7 @@
   <Licenses />
 </div>
 
-<style>
+<style lang="postcss">
   .tools {
     @apply flex items-center justify-center gap-4 py-4 text-2xl;
   }

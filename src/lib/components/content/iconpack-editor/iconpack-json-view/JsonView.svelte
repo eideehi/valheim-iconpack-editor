@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .json-view {
     @apply flex w-[clamp(17rem,20vw,20rem)] min-w-[clamp(17rem,20vw,20rem)] flex-col overflow-auto;
   }

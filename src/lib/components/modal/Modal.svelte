@@ -54,7 +54,7 @@
   </div>
 {/if}
 
-<style>
+<style lang="postcss">
   .modal-container {
     @apply absolute left-0 top-0 z-50 h-[100vh] w-[100vw];
   }

@@ -41,7 +41,7 @@
   />
 </div>
 
-<style>
+<style lang="postcss">
   .create-iconpack {
     @apply flex flex-col gap-y-4;
   }

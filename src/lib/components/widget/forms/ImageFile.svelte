@@ -181,7 +181,7 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   .image-file {
     @apply relative flex flex-col gap-y-0.5;
   }

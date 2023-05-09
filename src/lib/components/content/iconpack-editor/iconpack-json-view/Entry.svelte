@@ -40,7 +40,7 @@
   {/if}
 </button>
 
-<style>
+<style lang="postcss">
   .entry {
     @apply flex items-center gap-2.5;
   }

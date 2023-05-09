@@ -83,7 +83,7 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   .options-editor {
     @apply flex flex-col gap-2.5;
   }

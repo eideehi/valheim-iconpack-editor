@@ -102,7 +102,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .drop-zone {
     @apply flex h-full w-full items-center justify-center;
   }

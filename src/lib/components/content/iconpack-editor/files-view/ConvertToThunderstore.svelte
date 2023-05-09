@@ -16,7 +16,7 @@
   </button>
 </div>
 
-<style>
+<style lang="postcss">
   .convert-to-thunderstore {
     @apply flex items-center justify-center rounded p-0.5;
   }

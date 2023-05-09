@@ -30,7 +30,7 @@
   </button>
 </div>
 
-<style>
+<style lang="postcss">
   .language-select {
     @apply relative flex items-center justify-center;
   }

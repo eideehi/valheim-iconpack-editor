@@ -33,7 +33,7 @@
   </Modal>
 {/if}
 
-<style>
+<style lang="postcss">
   .outside {
     @apply flex h-full w-full items-center justify-center bg-black/10;
   }

@@ -53,7 +53,7 @@
   <div class="vertical-border" />
 </div>
 
-<style>
+<style lang="postcss">
   .resize-bar {
     @apply flex h-full w-1.5 min-w-[0.375rem] cursor-ew-resize select-none justify-center;
   }

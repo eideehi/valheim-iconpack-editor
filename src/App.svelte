@@ -24,7 +24,7 @@
   </main>
 </div>
 
-<style>
+<style lang="postcss">
   .valheim-iconpack-editor {
     @apply flex h-[100vh] w-[100vw] flex-col;
   }

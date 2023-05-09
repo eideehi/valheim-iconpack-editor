@@ -33,7 +33,7 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   .buttons {
     @apply flex flex-col gap-2.5;
   }

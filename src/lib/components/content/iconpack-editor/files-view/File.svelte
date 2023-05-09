@@ -20,7 +20,7 @@
   <span class="name">{file.name}</span>
 </div>
 
-<style>
+<style lang="postcss">
   .file {
     @apply inline-flex items-center gap-x-1 whitespace-pre;
   }

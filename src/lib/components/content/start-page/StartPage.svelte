@@ -17,7 +17,7 @@
   <Tools />
 </div>
 
-<style>
+<style lang="postcss">
   .start-page {
     @apply mx-auto flex h-full w-[clamp(20rem,60vw,54rem)] flex-col justify-between;
   }

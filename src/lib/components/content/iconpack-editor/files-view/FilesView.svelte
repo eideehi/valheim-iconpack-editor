@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .file-tree {
     @apply flex w-[clamp(17rem,20vw,20rem)] min-w-[clamp(17rem,20vw,20rem)] flex-col overflow-auto;
   }

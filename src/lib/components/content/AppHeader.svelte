@@ -10,7 +10,7 @@
   <h1 class="title">Valheim IconPack Editor</h1>
 </header>
 
-<style>
+<style lang="postcss">
   .app-header {
     @apply relative;
   }

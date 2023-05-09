@@ -60,7 +60,7 @@
   </button>
 </div>
 
-<style>
+<style lang="postcss">
   .licenses {
     @apply flex items-center justify-center;
   }

@@ -102,7 +102,7 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   .input-container {
     @apply relative flex flex-col gap-y-0.5;
   }

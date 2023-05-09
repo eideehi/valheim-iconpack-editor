@@ -71,7 +71,7 @@
   />
 </div>
 
-<style>
+<style lang="postcss">
   .sprite-editor {
     @apply flex flex-col gap-2.5;
   }

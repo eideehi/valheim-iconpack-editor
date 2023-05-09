@@ -129,7 +129,7 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   .number-input {
     @apply relative flex flex-col gap-y-0.5;
   }
