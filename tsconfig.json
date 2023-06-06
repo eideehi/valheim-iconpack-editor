@@ -15,6 +15,7 @@
     "checkJs": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
       "@/*": [
