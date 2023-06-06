@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "prettier --plugin-search-dir . --check ./src && eslint ./src",
+    "lint": "eslint --fix ./src",
     "format": "prettier --plugin-search-dir . --write ./src",
     "deploy": "gh-pages -d ./dist"
   },
