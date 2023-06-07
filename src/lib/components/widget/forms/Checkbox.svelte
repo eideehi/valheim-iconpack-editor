@@ -10,10 +10,10 @@
   import CheckedDarkIcon from "~icons/mdi/checkbox-marked";
   import HelpIcon from "~icons/mingcute/question-line";
 
-  export let label = "";
+  export let label: Nullable<string> = null;
   export let value = false;
   export let options: {
-    help?: string;
+    help?: Nullable<string>;
   } = {};
 
   const id = nanoid();
@@ -36,7 +36,9 @@
         <svelte:component this={$theme === "light" ? CheckboxLightIcon : CheckboxDarkIcon} />
       {/if}
     </span>
-    <span class="label">{label}</span>
+    {#if label}
+      <span class="label">{label}</span>
+    {/if}
   </button>
   {#if options.help}
     <button class="help-button" on:click={() => getModal(id)?.open()}>

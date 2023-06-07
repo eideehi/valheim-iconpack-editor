@@ -8,12 +8,18 @@
       height: number;
     };
   }
+
+  function createObjectURL(image: Nullable<ImageFileData>): string {
+    if (image == null) return "";
+    return URL.createObjectURL(new Blob([image.data], { type: image.type }));
+  }
 </script>
 
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import { nanoid } from "nanoid";
   import { PNG } from "pngjs/browser";
+  import _ from "~lodash";
   import { t } from "@/lib/i18n";
   import { MimeType } from "@/lib/utils/virtual-file-system";
   import { getModal } from "#/modal/Modal.svelte";
@@ -32,7 +38,8 @@
   const id = nanoid();
   const dispatch = createEventDispatcher();
 
-  let url = "";
+  let url: string;
+  $: url = createObjectURL(image);
 
   let invalid = false;
   let error = "";
@@ -62,9 +69,9 @@
     dispatch("change", { directory, image });
   }
 
-  async function loadImage(file: File): Promise<void> {
+  async function loadImage(file: Nullable<File>): Promise<void> {
     directory = "";
-    if (!validate(file)) {
+    if (!validate(file) || file == null) {
       image = null;
       dispatchChangeEvent();
       return Promise.resolve();
@@ -87,21 +94,24 @@
   }
 
   async function onFileDrop(event: DragEvent): Promise<void> {
-    if (event.dataTransfer.items) {
-      for (const item of event.dataTransfer.items) {
+    const { dataTransfer } = event;
+    if (!dataTransfer) return;
+
+    if (dataTransfer.items) {
+      for (const item of dataTransfer.items) {
         if (item.kind === "file") {
           await loadImage(item.getAsFile());
           break;
         }
       }
-    } else if (event.dataTransfer.files) {
-      await loadImage(event.dataTransfer.files[0]);
+    } else if (dataTransfer.files) {
+      await loadImage(dataTransfer.files[0]);
     }
   }
 
   async function onFileChange(event: Event): Promise<void> {
     if (event.target instanceof HTMLInputElement) {
-      await loadImage(event.target.files[0]);
+      await loadImage(event.target.files?.item(0));
     }
   }
 
@@ -111,10 +121,6 @@
     image = null;
     validate(null);
     dispatchChangeEvent();
-  }
-
-  $: if (image != null) {
-    url = URL.createObjectURL(new Blob([image.data], { type: image.type }));
   }
 </script>
 
@@ -161,11 +167,11 @@
           </label>
           <div class="data-entry width">
             <span>{$t("forms.image-file.image-data.width")}</span>
-            <span>{image.dimension.width}</span>
+            <span>{_.get(image, ["dimension", "width"], "")}</span>
           </div>
           <div class="data-entry height">
             <span>{$t("forms.image-file.image-data.height")}</span>
-            <span>{image.dimension.height}</span>
+            <span>{_.get(image, ["dimension", "height"], "")}</span>
           </div>
         </div>
       </div>

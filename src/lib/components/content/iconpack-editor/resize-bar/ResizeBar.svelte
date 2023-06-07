@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
 
-  export let ref: HTMLElement;
+  export let ref: Nullable<HTMLElement>;
   export let positiveDirection: "left" | "right";
 
   const left = positiveDirection === "left";
@@ -12,12 +12,14 @@
   let baseW = -1;
 
   function dragStart(event: MouseEvent): void {
+    if (!ref) return;
     dragged = true;
     baseX = event.clientX;
     baseW = ref.clientWidth;
   }
 
   function dragging(event: MouseEvent): void {
+    if (!ref) return;
     if (!dragged) return;
 
     let movementX = event.movementX;
@@ -49,9 +51,11 @@
   });
 </script>
 
-<div class="resize-bar" class:left class:right on:mousedown={dragStart}>
-  <div class="vertical-border" />
-</div>
+{#if ref}
+  <div class="resize-bar" class:left class:right on:mousedown={dragStart}>
+    <div class="vertical-border" />
+  </div>
+{/if}
 
 <style lang="postcss">
   .resize-bar {

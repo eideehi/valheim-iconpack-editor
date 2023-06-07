@@ -44,6 +44,7 @@
 
   $: if (spriteFile != null) {
     new PNG({}).parse(spriteFile.data, (_, png) => {
+      if (!spriteFile) return;
       directory = iconpack.getSpritePath(spriteFile).parent;
       image = {
         name: spriteFile.name,

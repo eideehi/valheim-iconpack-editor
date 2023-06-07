@@ -11,35 +11,32 @@
   import CrossIcon from "~icons/mingcute/close-fill";
   import HelpIcon from "~icons/mingcute/question-line";
 
-  export let label = "";
+  export let label: Nullable<string> = null;
   export let value: Nullable<number> = null;
   export let options: {
     disabled?: boolean;
     required?: boolean;
-    placeholder?: string;
-    max?: number;
-    min?: number;
-    step?: number;
-    help?: string;
+    placeholder?: Nullable<string>;
+    max?: Nullable<number>;
+    min?: Nullable<number>;
+    step?: Nullable<number>;
+    help?: Nullable<string>;
   } = {};
 
   const id = nanoid();
   const dispatch = createEventDispatcher();
 
   let textValue: string;
-  $: {
-    textValue = value?.toString() || "";
-  }
+  $: textValue = value == null ? "" : (value as number).toString();
 
-  let min = 0;
-  let max = Number.MAX_SAFE_INTEGER;
+  let min: number;
+  $: min = options.min != null ? options.min : 0;
+
+  let max: number;
+  $: max = options.max != null ? options.max : Number.MAX_SAFE_INTEGER;
+
   let step = 1;
-
-  $: {
-    min = options.min != null ? options.min : 0;
-    max = options.max != null ? options.max : Number.MAX_SAFE_INTEGER;
-    step = options.step != null ? options.step : 1;
-  }
+  $: step = options.step != null ? options.step : 1;
 
   const clamp = (decimal: Decimal): Decimal => {
     if (decimal.gt(max)) return new Decimal(max);

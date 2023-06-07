@@ -1,5 +1,5 @@
 import type { AutomaticsIconPackJson, AutomaticsJsonEntry } from "@/lib/utils/automatics-iconpack";
-import type { VirtualDirectory, VirtualFile } from "@/lib/utils/virtual-file-system";
+import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
 import _ from "~lodash";
 import { removeSpriteFile } from "./removeSpriteFile";
 import { isTargetEqual } from "@/lib/utils/automatics-iconpack";

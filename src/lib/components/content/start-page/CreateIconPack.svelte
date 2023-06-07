@@ -7,7 +7,8 @@
 
   export let files: VirtualDirectory;
 
-  function validateIconPackName(name: string): boolean {
+  function validateIconPackName(name: Nullable<string>): boolean {
+    if (name == null) return false;
     return /^[ a-zA-Z0-9_.+-]+$/g.test(name.trim());
   }
 

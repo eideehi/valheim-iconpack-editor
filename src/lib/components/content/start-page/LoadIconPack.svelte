@@ -31,7 +31,7 @@
 
   function loadIconPack(file: Nullable<File>): Promise<void> {
     getModal(id)?.close();
-    if (!validate(file)) return;
+    if (!validate(file) || file == null) return Promise.resolve();
 
     return iconpack.loadIconPack(file.arrayBuffer()).then((loaded) => {
       if (loaded == null) {
@@ -42,22 +42,23 @@
     });
   }
 
-  async function onFileDrop(event: DragEvent): Promise<void> {
-    if (event.dataTransfer.items) {
-      for (const item of event.dataTransfer.items) {
+  async function onFileDrop({ dataTransfer }: DragEvent): Promise<void> {
+    if (!dataTransfer) return;
+    if (dataTransfer.items) {
+      for (const item of dataTransfer.items) {
         if (item.kind === "file") {
           await loadIconPack(item.getAsFile());
           break;
         }
       }
-    } else if (event.dataTransfer.files) {
-      await loadIconPack(event.dataTransfer.files[0]);
+    } else if (dataTransfer.files) {
+      await loadIconPack(dataTransfer.files[0]);
     }
   }
 
   async function onFileChange(event: Event): Promise<void> {
     if (event.target instanceof HTMLInputElement) {
-      await loadIconPack(event.target.files[0]);
+      await loadIconPack(event.target.files?.item(0));
     }
   }
 

@@ -6,10 +6,11 @@ import { getSpriteRoot } from "./getSpriteRoot";
 
 export function removeSpriteFile(files: VirtualDirectory, entry: AutomaticsJsonEntry): boolean {
   const textures = getSpriteRoot(files);
-  if (textures == null) return;
-  vfs.remove(textures, entry.sprite.file);
+  if (textures == null) return false;
+  const result = vfs.remove(textures, entry.sprite.file);
   const parent = vfs.find(textures, path.dirname(entry.sprite.file));
   if (vfs.isDirectory(parent) && _.isEmpty(parent.files)) {
-    vfs.remove(parent.parent, parent);
+    vfs.remove(parent);
   }
+  return result;
 }

@@ -3,7 +3,7 @@
   import Directory from "./Directory.svelte";
   import Tools from "#/content/iconpack-editor/files-view/Tools.svelte";
 
-  export let ref: HTMLElement;
+  export let ref: Nullable<HTMLElement>;
   export let files: VirtualDirectory;
 </script>
 

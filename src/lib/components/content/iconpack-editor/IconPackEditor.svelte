@@ -27,6 +27,7 @@
 
   setContext<IconPackEditorContext>(iconPackEditorContextKey, {
     saveEntry: () => {
+      if (!spriteFile) return;
       json = [...iconpack.saveJsonEntry(files, json, entry, spriteFile)];
       files = { ...files };
       entry = iconpack.defaultJsonEntry();
@@ -44,7 +45,7 @@
     },
   });
 
-  function onBeforeUnload(event: BeforeUnloadEvent): string {
+  function onBeforeUnload(event: BeforeUnloadEvent): Nullable<string> {
     if (!__DEV_MODE__) {
       event.preventDefault();
       return (event.returnValue = "");

@@ -35,7 +35,7 @@ export function loadIconPack(data: Promise<ArrayBuffer>): Promise<Nullable<Virtu
 
     if (dir.files.length === 1 && vfs.isDirectory(dir.files[0])) {
       dir = dir.files[0];
-      vfs.remove(dir.parent, dir);
+      vfs.remove(dir);
     }
 
     return isValidIconPack(dir) ? dir : null;

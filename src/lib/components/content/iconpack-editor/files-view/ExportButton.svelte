@@ -21,7 +21,9 @@
   <button on:click={exportIconPack}>
     <Icon />
   </button>
-  <a bind:this={download} download="{fileName}.zip" href="#download" />
+  <a bind:this={download} class="download" download="{fileName}.zip" href="#download" tabindex="-1">
+    dummy
+  </a>
 </div>
 
 <style lang="postcss">
@@ -31,5 +33,9 @@
 
   .export-iconpack:hover {
     @apply rounded bg-dark;
+  }
+
+  .download {
+    @apply absolute -left-[128px] -top-[128px];
   }
 </style>

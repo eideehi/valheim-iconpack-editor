@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { SvelteComponent } from "svelte";
 
-  export let text = "";
-  export let icon: typeof SvelteComponent = undefined;
+  export let text: Nullable<string> = null;
+  export let icon: Nullable<typeof SvelteComponent> = null;
   export let options: {
     disabled?: boolean;
   } = {};
@@ -12,7 +12,7 @@
   {#if icon}
     <svelte:component this={icon} />
   {/if}
-  {#if text.length > 0}
+  {#if text}
     <span>{text}</span>
   {/if}
 </button>

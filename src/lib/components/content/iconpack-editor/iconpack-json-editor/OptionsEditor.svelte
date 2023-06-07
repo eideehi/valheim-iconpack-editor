@@ -7,11 +7,16 @@
   import NumberInput from "#/widget/forms/NumberInput.svelte";
 
   export let entry: AutomaticsJsonEntry;
-  export let spriteFile: VirtualFileSystemNode;
+  export let spriteFile: Nullable<VirtualFileSystemNode> = null;
 
-  let hideNameTag = false;
-  let iconScaleLargeMap: Nullable<number> = null;
-  let iconScaleSmallMap: Nullable<number> = null;
+  let hideNameTag: boolean;
+  $: hideNameTag = _.get(entry, ["options", "hideNameTag"], false) as boolean;
+
+  let iconScaleLargeMap: Nullable<number>;
+  $: iconScaleLargeMap = _.get(entry, ["options", "iconScaleLargeMap"], null) as Nullable<number>;
+
+  let iconScaleSmallMap: Nullable<number>;
+  $: iconScaleSmallMap = _.get(entry, ["options", "iconScaleSmallMap"], null) as Nullable<number>;
 
   const addOption = (key: string, value: unknown): void => {
     entry.options = { ..._.merge(entry.options || {}, { [key]: value }) };
@@ -49,11 +54,6 @@
     updateOption("iconScaleSmallMap", detail.value);
   }
 
-  $: {
-    hideNameTag = _.get(entry, ["options", "hideNameTag"], false);
-    iconScaleLargeMap = _.get(entry, ["options", "iconScaleLargeMap"], null) as Nullable<number>;
-    iconScaleSmallMap = _.get(entry, ["options", "iconScaleSmallMap"], null) as Nullable<number>;
-  }
   $: if (spriteFile == null) {
     updateOption("iconScaleLargeMap", null);
     updateOption("iconScaleSmallMap", null);

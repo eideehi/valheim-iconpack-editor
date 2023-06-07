@@ -40,6 +40,8 @@ export const MimeType: MimeType = Object.freeze({
         return _.eq("application/json", _.toLower(type));
       case "zip":
         return _.includes(["application/zip", "application/x-zip-compressed"], _.toLower(type));
+      default:
+        return false;
     }
   },
 });

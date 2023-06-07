@@ -9,14 +9,14 @@
   import CloseIcon from "~icons/mingcute/close-fill";
   import HelpIcon from "~icons/mingcute/question-line";
 
-  export let label = "";
-  export let value: string;
+  export let label: Nullable<string> = "";
+  export let value: Nullable<string> = null;
   export let options: {
     disabled?: boolean;
     required?: boolean;
-    placeholder?: string;
-    validation?: Predicate1<string>;
-    help?: string;
+    placeholder?: Nullable<string>;
+    validation?: Predicate1<Nullable<string>>;
+    help?: Nullable<string>;
   } = {};
 
   const inputOptions = pick(options, ["disabled", "required"]);

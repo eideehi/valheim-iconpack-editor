@@ -6,6 +6,8 @@ export function zip(files: VirtualDirectory): Promise<Blob> {
   const write = (entry: JSZip, node: VirtualFileSystemNode) => {
     if (node.type === "directory") {
       const folder = entry.folder(node.name);
+      if (!folder) return;
+
       for (const child of node.files) {
         write(folder, child);
       }

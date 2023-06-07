@@ -3,7 +3,7 @@
   import DialogModal from "#/modal/DialogModal.svelte";
 
   export let id: string;
-  export let markdown: string;
+  export let markdown: Nullable<string>;
 </script>
 
 {#if markdown}

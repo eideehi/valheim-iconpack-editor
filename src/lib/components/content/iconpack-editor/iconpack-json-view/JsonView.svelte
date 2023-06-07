@@ -8,7 +8,7 @@
   import SearchBar from "#/widget/common/SearchBar.svelte";
   import Entry from "#/content/iconpack-editor/iconpack-json-view/Entry.svelte";
 
-  export let ref: HTMLElement;
+  export let ref: Nullable<HTMLElement>;
   export let files: VirtualDirectory;
   export let json: AutomaticsIconPackJson;
 

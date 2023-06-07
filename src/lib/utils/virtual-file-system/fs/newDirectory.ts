@@ -6,7 +6,7 @@ import { move } from "./move";
 import { getRoot } from "./getRoot";
 
 export type NewDirectoryArgs = {
-  parent?: VirtualDirectory;
+  parent?: Nullable<VirtualDirectory>;
   name: string;
   files?: VirtualFileSystemNode[];
 };
@@ -47,15 +47,9 @@ function isNewDirectoryArgs(obj: object): obj is NewDirectoryArgs {
 }
 
 function newDirectory1(args: NewDirectoryArgs): VirtualDirectory {
-  const { parent, name, files } = Object.assign<Partial<NewDirectoryArgs>, NewDirectoryArgs>(
-    {
-      parent: null,
-      files: [] as VirtualFileSystemNode[],
-    },
-    args
-  );
+  const { parent, name, files } = args;
   const dir: VirtualDirectory = { type: "directory", parent: null, name, files: [] };
-  files.forEach((file) => move(file, dir));
+  (files || []).forEach((file) => move(file, dir));
   if (parent != null) {
     add(parent, dir);
   }
@@ -70,9 +64,9 @@ function newDirectory2(parent: VirtualDirectory, path: string): VirtualDirectory
   return directory;
 }
 
-function newDirectory3(path: string): Nullable<VirtualDirectory> {
+function newDirectory3(path: string): VirtualDirectory {
   const _segments = segments(path);
-  if (_.isEmpty(_segments)) return null;
+  if (_.isEmpty(_segments)) return { type: "directory", parent: null, name: "", files: [] };
   let dir = newDirectory1({ name: _segments[0] });
   for (let i = 1; i < _segments.length; i++) {
     dir = newDirectory1({ parent: dir, name: _segments[i] });
