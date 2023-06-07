@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FullScreen from "./FullScreen.svelte";
   import ThemeSwitcher from "./ThemeSwitcher.svelte";
   import LanguageSelect from "./LanguageSelect.svelte";
   import GitHub from "./GitHub.svelte";
@@ -6,6 +7,7 @@
 </script>
 
 <div class="tools">
+  <FullScreen />
   <LanguageSelect />
   <ThemeSwitcher />
   <GitHub />
