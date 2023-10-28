@@ -1,7 +1,7 @@
 <script lang="ts">
   import { language, t } from "@/lib/i18n";
   import { clickOutside } from "@/lib/directive";
-  import LanguageIcon from "~icons/mdi/web";
+  import LanguageIcon from "~icons/mdi/translate";
 
   const languages = ["en", "ja"] as const;
   type Language = (typeof languages)[number];
