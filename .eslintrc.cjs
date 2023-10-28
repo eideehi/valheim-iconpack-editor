@@ -7,25 +7,23 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
+    "plugin:svelte/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
+    "plugin:svelte/prettier",
   ],
-  plugins: ["svelte3", "@typescript-eslint"],
+  plugins: ["@typescript-eslint"],
   overrides: [
     {
       files: ["**/*.svelte"],
-      processor: "svelte3/svelte3",
-    },
-    {
-      files: ["**/*.ts", "**/*.svelte"],
-      rules: {
-        "no-undef": "off",
-      },
-    },
+      parser: "svelte-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+      }
+    }
   ],
-  settings: {
-    "svelte3/typescript": () => require("typescript"),
-    "svelte3/ignore-styles": () => true,
+  rules: {
+    "no-undef": "off"
   },
 };
