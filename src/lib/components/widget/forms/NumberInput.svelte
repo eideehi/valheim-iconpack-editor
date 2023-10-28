@@ -27,7 +27,7 @@
   const dispatch = createEventDispatcher();
 
   let textValue: string;
-  $: textValue = value == null ? "" : (value as number).toString();
+  $: textValue = value == null ? "" : value.toString();
 
   let min: number;
   $: min = options.min != null ? options.min : 0;

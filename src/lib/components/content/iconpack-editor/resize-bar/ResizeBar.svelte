@@ -52,6 +52,7 @@
 </script>
 
 {#if ref}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="resize-bar" class:left class:right on:mousedown={dragStart}>
     <div class="vertical-border" />
   </div>

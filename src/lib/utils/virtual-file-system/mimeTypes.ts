@@ -14,7 +14,7 @@ interface MimeType {
   isMatch(mimeType: keyof typeof MimeTypes, type: string): boolean;
 }
 
-export const MimeType: MimeType = Object.freeze({
+export const MimeType = Object.freeze<MimeType>({
   get: (extension) => {
     switch (extension) {
       case "json":

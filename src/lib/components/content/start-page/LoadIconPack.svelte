@@ -78,6 +78,7 @@
 <svelte:body on:dragenter|preventDefault={showDropZone} />
 
 <Modal {id}>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="drop-zone"
     on:dragleave={closeDropZone}
@@ -93,6 +94,7 @@
 <div class="load-iconpack">
   <h2 class="caption">{$t("start-page.load-iconpack.description")}</h2>
   <div class="load-button-wrapper">
+    <!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
     <label class="load-button" role="button" tabindex="0">
       <span>{$t("start-page.load-iconpack.load-iconpack")}</span>
       <input class="hidden" on:change={onFileChange} type="file" />

@@ -1,5 +1,5 @@
 declare module "#/modal/Modal.svelte" {
-  export { SvelteComponentDev as default } from "svelte/internal";
+  export { SvelteComponent as default } from "svelte";
 
   export interface ModalApi {
     open(onClose?: Callback): void;
@@ -10,7 +10,7 @@ declare module "#/modal/Modal.svelte" {
 }
 
 declare module "#/widget/forms/ImageFile.svelte" {
-  export { SvelteComponentDev as default } from "svelte/internal";
+  export { SvelteComponent as default } from "svelte";
 
   export interface ImageFileData {
     name: string;

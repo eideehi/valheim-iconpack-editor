@@ -135,6 +135,7 @@
       {/if}
     </div>
   {/if}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="image-row" on:dragover|preventDefault on:drop|preventDefault={onFileDrop}>
     {#if image == null}
       <div class="select-area">

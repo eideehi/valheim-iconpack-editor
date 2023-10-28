@@ -24,6 +24,9 @@ module.exports = {
     }
   ],
   rules: {
-    "no-undef": "off"
+    "no-undef": "off",
+    "svelte/no-at-html-tags": "warn",
+    "svelte/valid-compile": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
   },
 };
