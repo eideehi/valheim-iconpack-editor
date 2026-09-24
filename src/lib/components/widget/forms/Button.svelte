@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { SvelteComponent } from "svelte";
+  import type { Component } from "svelte";
 
   export let text: Nullable<string> = null;
-  export let icon: Nullable<typeof SvelteComponent> = null;
+  export let icon: Nullable<Component> = null;
   export let options: {
     disabled?: boolean;
   } = {};

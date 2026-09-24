@@ -16,16 +16,15 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
-    "baseUrl": "./",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "#/*": [
-        "src/lib/components/*"
+        "./src/lib/components/*"
       ],
       "~lodash": [
-        "src/lib/lodash"
+        "./src/lib/lodash"
       ]
     }
   },

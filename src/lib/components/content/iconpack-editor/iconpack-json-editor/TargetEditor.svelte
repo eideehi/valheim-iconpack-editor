@@ -7,8 +7,8 @@
 
   export let entry: AutomaticsJsonEntry;
 
-  let target = "";
-  let level: Nullable<number> = null;
+  let target: string;
+  let level: Nullable<number>;
 
   function onTargetChanged({ detail }: CustomEvent<{ value: string }>): void {
     entry.target.name = detail.value;
@@ -26,7 +26,7 @@
 
   $: {
     target = entry.target.name;
-    level = _.get(entry.target, ["metadata", "level"], null) as Nullable<number>;
+    level = _.get(entry.target, ["metadata", "level"], null);
   }
 </script>
 

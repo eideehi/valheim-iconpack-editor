@@ -10,13 +10,13 @@
   export let spriteFile: Nullable<VirtualFileSystemNode> = null;
 
   let hideNameTag: boolean;
-  $: hideNameTag = _.get(entry, ["options", "hideNameTag"], false) as boolean;
+  $: hideNameTag = _.get(entry, ["options", "hideNameTag"], false);
 
   let iconScaleLargeMap: Nullable<number>;
-  $: iconScaleLargeMap = _.get(entry, ["options", "iconScaleLargeMap"], null) as Nullable<number>;
+  $: iconScaleLargeMap = _.get(entry, ["options", "iconScaleLargeMap"], null);
 
   let iconScaleSmallMap: Nullable<number>;
-  $: iconScaleSmallMap = _.get(entry, ["options", "iconScaleSmallMap"], null) as Nullable<number>;
+  $: iconScaleSmallMap = _.get(entry, ["options", "iconScaleSmallMap"], null);
 
   const addOption = (key: string, value: unknown): void => {
     entry.options = { ..._.merge(entry.options || {}, { [key]: value }) };

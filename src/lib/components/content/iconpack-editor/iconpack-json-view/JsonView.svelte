@@ -28,7 +28,7 @@
     <SearchBar bind:keyword={searchKeyword} />
   </div>
   <div class="entries">
-    {#each sort(json) as entry}
+    {#each sort(json) as entry (entry)}
       <div class="entry-wrapper" class:active={isKeywordMatch(entry, searchKeyword)}>
         <Entry {files} {entry} />
       </div>

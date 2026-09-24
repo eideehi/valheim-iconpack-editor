@@ -35,7 +35,7 @@ export function newDirectory(
 function isVirtualDirectory(obj: object): obj is VirtualDirectory {
   return (
     _.has(obj, "type") &&
-    _.get(obj, ["type"], "") === "directory" &&
+    _.get(obj, ["type"]) === "directory" &&
     _.has(obj, "name") &&
     _.has(obj, "parent") &&
     _.has(obj, "files")

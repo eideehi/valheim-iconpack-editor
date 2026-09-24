@@ -28,25 +28,27 @@
       <li class="caption">
         <span>{$t("licenses.caption")}</span>
       </li>
-      {#each _.keys(licenses) as key}
+      {#each _.keys(licenses) as key (key)}
         <li class="license-item">
           <table class="license">
-            <tr>
-              <th>{$t("licenses.library.name")}</th>
-              <td>{_.get(licenses[key], ["name"], "")}</td>
-            </tr>
-            <tr>
-              <th>{$t("licenses.library.version")}</th>
-              <td>{_.get(licenses[key], ["version"], "")}</td>
-            </tr>
-            <tr>
-              <th>{$t("licenses.library.publisher")}</th>
-              <td>{_.get(licenses[key], ["publisher"], "")}</td>
-            </tr>
-            <tr>
-              <th>{$t("licenses.library.license")}</th>
-              <td>{_.get(licenses[key], ["licenseText"], "")}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>{$t("licenses.library.name")}</th>
+                <td>{_.get(licenses[key], ["name"], "")}</td>
+              </tr>
+              <tr>
+                <th>{$t("licenses.library.version")}</th>
+                <td>{_.get(licenses[key], ["version"], "")}</td>
+              </tr>
+              <tr>
+                <th>{$t("licenses.library.publisher")}</th>
+                <td>{_.get(licenses[key], ["publisher"], "")}</td>
+              </tr>
+              <tr>
+                <th>{$t("licenses.library.license")}</th>
+                <td>{_.get(licenses[key], ["licenseText"], "")}</td>
+              </tr>
+            </tbody>
           </table>
         </li>
       {/each}

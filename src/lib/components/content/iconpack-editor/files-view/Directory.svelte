@@ -29,7 +29,7 @@
 
 {#if expanded}
   <ul class="children">
-    {#each sort(directory) as file}
+    {#each sort(directory) as file (file)}
       <li>
         {#if file.type === "directory"}
           <svelte:self directory={file} />

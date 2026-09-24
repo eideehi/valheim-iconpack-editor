@@ -19,7 +19,7 @@
 
 <div class="language-select" use:clickOutside={() => setActive(false)}>
   <div class="languages" class:active>
-    {#each languages as language}
+    {#each languages as language (language)}
       <button class="language" on:click={() => changeLanguage(language)}
         >{$t(`languages.${language}`)}</button
       >

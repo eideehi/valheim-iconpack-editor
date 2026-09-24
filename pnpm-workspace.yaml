@@ -1,0 +1,12 @@
+allowBuilds:
+  svelte-preprocess: set this to true or false
+# Supply-chain hardening: do not install versions younger than 7 days
+# (most malicious releases are detected and unpublished within that window).
+minimumReleaseAge: 10080
+# Fail if a package version has weaker trust evidence (e.g. lost provenance) than earlier releases.
+trustPolicy: no-downgrade
+# Reviewed false positives: published by the regular maintainers long ago, no OSV reports.
+#   chokidar@4.0.3 (2024-12, paulmillr), semver@6.3.1 (2023-07 v6 backport, lukekarrys)
+trustPolicyExclude:
+  - chokidar@4.0.3
+  - semver@6.3.1
