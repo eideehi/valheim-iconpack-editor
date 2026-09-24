@@ -16,7 +16,7 @@
 </script>
 
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onDestroy } from "svelte";
   import { nanoid } from "nanoid";
   import { PNG } from "pngjs/browser";
   import _ from "~lodash";
@@ -38,8 +38,17 @@
   const id = nanoid();
   const dispatch = createEventDispatcher();
 
-  let url: string;
-  $: url = createObjectURL(image);
+  let url = "";
+  $: updateUrl(image);
+
+  function updateUrl(image: Nullable<ImageFileData>): void {
+    if (url) URL.revokeObjectURL(url);
+    url = createObjectURL(image);
+  }
+
+  onDestroy(() => {
+    if (url) URL.revokeObjectURL(url);
+  });
 
   let invalid = false;
   let error = "";
@@ -65,7 +74,7 @@
   }
 
   function dispatchChangeEvent(): void {
-    directory = directory.replaceAll(/[^ a-zA-Z0-9_.+-]/g, "");
+    directory = directory.replaceAll(/[^ a-zA-Z0-9_.+/-]/g, "");
     dispatch("change", { directory, image });
   }
 
@@ -78,7 +87,13 @@
     }
 
     const buffer = await file.arrayBuffer();
-    new PNG({}).parse(buffer, (_, png) => {
+    new PNG({}).parse(buffer, (error, png) => {
+      if (error) {
+        setError("forms.common.error.unsupported-file-format");
+        image = null;
+        dispatchChangeEvent();
+        return;
+      }
       image = {
         name: file.name,
         type: file.type,
@@ -116,7 +131,6 @@
   }
 
   function clear(): void {
-    url = "";
     directory = "";
     image = null;
     validate(null);

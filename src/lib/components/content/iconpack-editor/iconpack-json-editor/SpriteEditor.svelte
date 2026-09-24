@@ -28,8 +28,11 @@
       };
     } else {
       const { name, type, data, dimension } = image;
+      const segments = path
+        .segments(directory)
+        .filter((segment) => segment !== "." && segment !== "..");
       spriteFile = vfs.newFile({
-        parent: vfs.newDirectory(directory),
+        parent: segments.length > 0 ? vfs.newDirectory(segments.join("/")) : null,
         name,
         mimeType: type,
         data,
@@ -43,9 +46,13 @@
   }
 
   $: if (spriteFile != null) {
-    new PNG({}).parse(spriteFile.data, (_, png) => {
+    new PNG({}).parse(spriteFile.data, (error, png) => {
       if (!spriteFile) return;
       directory = iconpack.getSpritePath(spriteFile).parent;
+      if (error) {
+        image = null;
+        return;
+      }
       image = {
         name: spriteFile.name,
         type: MimeTypes.png,

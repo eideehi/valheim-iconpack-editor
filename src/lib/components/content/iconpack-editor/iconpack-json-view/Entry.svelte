@@ -2,7 +2,7 @@
   import type { AutomaticsJsonEntry } from "@/lib/utils/automatics-iconpack";
   import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
   import type { IconPackEditorContext } from "#/content/iconpack-editor/context";
-  import { getContext } from "svelte";
+  import { getContext, onDestroy } from "svelte";
   import _ from "~lodash";
   import { t } from "@/lib/i18n";
   import { iconpack } from "@/lib/utils/automatics-iconpack";
@@ -17,12 +17,17 @@
   let level: number;
 
   let url = "";
-  $: {
+  $: updateUrl(files, entry);
+
+  function updateUrl(files: VirtualDirectory, entry: AutomaticsJsonEntry): void {
     const icon = iconpack.getSpriteFile(files, entry);
-    if (icon != null) {
-      url = URL.createObjectURL(new Blob([icon.data], { type: icon.mimeType }));
-    }
+    if (url) URL.revokeObjectURL(url);
+    url = icon != null ? URL.createObjectURL(new Blob([icon.data], { type: icon.mimeType })) : "";
   }
+
+  onDestroy(() => {
+    if (url) URL.revokeObjectURL(url);
+  });
 
   $: {
     name = entry.target.name;

@@ -1,5 +1,6 @@
 import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
 import { vfs } from "@/lib/utils/virtual-file-system";
+import { readIconPackJson } from "./readIconPackJson";
 
 export function isValidIconPack(files: VirtualDirectory): boolean {
   return isThunderstoreIconPack(files) || isNexusIconPack(files);
@@ -12,7 +13,13 @@ function isNexusIconPack(files: VirtualDirectory): boolean {
   );
   if (marker == null || vfs.getDepth(marker) > 1) return false;
   const json = vfs.find(marker.parent || files, "Textures/custom-map-icon.json");
-  return vfs.isFile(json);
+  if (!vfs.isFile(json)) return false;
+  try {
+    readIconPackJson(files);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function isThunderstoreIconPack(files: VirtualDirectory): boolean {

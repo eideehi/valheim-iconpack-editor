@@ -11,11 +11,12 @@ export function loadIconPack(data: Promise<ArrayBuffer>): Promise<Nullable<Virtu
 
     const loadingQueue: Promise<void>[] = [];
     zip.forEach((relativePath, entry) => {
+      if (isIgnoredEntry(relativePath)) return;
       if (entry.dir) {
         vfs.add(dir, vfs.newDirectory(relativePath));
       } else {
         const { dirName, fileName, extension } = path.split(relativePath);
-        const parent = vfs.newDirectory(dirName);
+        const parent = _.isEmpty(path.segments(dirName)) ? null : vfs.newDirectory(dirName);
         const name = _.isEmpty(extension) ? fileName : `${fileName}.${extension}`;
         const queue = entry.async("arraybuffer").then((buffer) => {
           vfs.add(
@@ -40,4 +41,9 @@ export function loadIconPack(data: Promise<ArrayBuffer>): Promise<Nullable<Virtu
 
     return isValidIconPack(dir) ? dir : null;
   });
+}
+
+function isIgnoredEntry(relativePath: string): boolean {
+  const segments = path.segments(relativePath);
+  return segments[0] === "__MACOSX" || segments[segments.length - 1] === ".DS_Store";
 }

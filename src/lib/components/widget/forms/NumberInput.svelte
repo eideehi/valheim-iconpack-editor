@@ -51,8 +51,11 @@
         return;
       }
       if (/^-?\d+(\.(\d+)?)?$/g.test(target.value)) {
-        value = clamp(new Decimal(target.value)).toNumber();
-        dispatch("change", { value });
+        const decimal = new Decimal(target.value);
+        if (decimal.gte(min) && decimal.lte(max)) {
+          value = decimal.toNumber();
+          dispatch("change", { value });
+        }
       } else {
         target.value = target.value.slice(0, -1);
         textValue = target.value;
@@ -62,6 +65,14 @@
         }
       }
     }
+  }
+
+  function commit(): void {
+    if (/^-?\d+(\.(\d+)?)?$/.test(textValue)) {
+      value = clamp(new Decimal(textValue)).toNumber();
+    }
+    textValue = value == null ? "" : value.toString();
+    dispatch("change", { value });
   }
 
   function clear(): void {
@@ -99,6 +110,7 @@
         class="input"
         inputmode="decimal"
         on:input={validate}
+        on:blur={commit}
         type="text"
       />
       {#if options.placeholder && !textValue}

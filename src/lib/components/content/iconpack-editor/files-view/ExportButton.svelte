@@ -11,8 +11,10 @@
   async function exportIconPack(): Promise<void> {
     if (!download) return;
     await vfs.zip(files).then((value) => {
-      download.href = URL.createObjectURL(value);
+      const url = URL.createObjectURL(value);
+      download.href = url;
       download.click();
+      setTimeout(() => URL.revokeObjectURL(url), 40_000);
     });
   }
 </script>

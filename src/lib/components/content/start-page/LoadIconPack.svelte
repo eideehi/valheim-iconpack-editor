@@ -33,13 +33,18 @@
     getModal(id)?.close();
     if (!validate(file) || file == null) return Promise.resolve();
 
-    return iconpack.loadIconPack(file.arrayBuffer()).then((loaded) => {
-      if (loaded == null) {
+    return iconpack
+      .loadIconPack(file.arrayBuffer())
+      .then((loaded) => {
+        if (loaded == null) {
+          setError("start-page.load-iconpack.failed-to-load-iconpack");
+          return;
+        }
+        files = loaded;
+      })
+      .catch(() => {
         setError("start-page.load-iconpack.failed-to-load-iconpack");
-        return;
-      }
-      files = loaded;
-    });
+      });
   }
 
   async function onFileDrop({ dataTransfer }: DragEvent): Promise<void> {

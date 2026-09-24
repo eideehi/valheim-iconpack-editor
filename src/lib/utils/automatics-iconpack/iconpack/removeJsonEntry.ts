@@ -2,6 +2,7 @@ import type { AutomaticsIconPackJson, AutomaticsJsonEntry } from "@/lib/utils/au
 import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
 import _ from "~lodash";
 import { removeSpriteFile } from "./removeSpriteFile";
+import { writeIconPackJson } from "./writeIconPackJson";
 import { isTargetEqual } from "@/lib/utils/automatics-iconpack";
 
 export function removeJsonEntry(
@@ -9,9 +10,12 @@ export function removeJsonEntry(
   json: AutomaticsIconPackJson,
   entry: AutomaticsJsonEntry
 ): AutomaticsIconPackJson {
-  _.remove(json, isTargetEqual(entry));
-  if (json.every((_entry) => _entry.sprite.file !== entry.sprite.file)) {
-    removeSpriteFile(files, entry);
+  const existEntry = json.find(isTargetEqual(entry));
+  if (existEntry == null) return json;
+  _.remove(json, isTargetEqual(existEntry));
+  if (json.every((_entry) => _entry.sprite.file !== existEntry.sprite.file)) {
+    removeSpriteFile(files, existEntry);
   }
+  writeIconPackJson(files, json);
   return json;
 }

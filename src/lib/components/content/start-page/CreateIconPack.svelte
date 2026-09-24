@@ -16,7 +16,7 @@
   let createButtonDisabled: boolean;
 
   $: {
-    createButtonDisabled = iconPackName.trim().length === 0;
+    createButtonDisabled = !validateIconPackName(iconPackName);
   }
 
   function create(): void {
