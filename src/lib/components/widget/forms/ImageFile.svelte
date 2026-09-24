@@ -156,13 +156,14 @@
         <span>{$t("forms.image-file.select-area.dnd-files-here-or")}</span>
         <label class="browse">
           <span>{$t("forms.image-file.select-area.browse")}</span>
-          <input class="hidden" on:change={onFileChange} type="file" />
+          <input class="hidden" accept="image/png" on:change={onFileChange} type="file" />
         </label>
       </div>
     {:else}
       <div class="image-data">
         <div class="preview-wrapper">
           <button
+            type="button"
             class="clear-button"
             aria-label={$t("forms.image-file.remove")}
             title={$t("forms.image-file.remove")}
@@ -172,7 +173,7 @@
           </button>
           <label class="preview">
             <img src={url} alt={image.name} />
-            <input class="hidden" on:change={onFileChange} type="file" />
+            <input class="hidden" accept="image/png" on:change={onFileChange} type="file" />
           </label>
         </div>
 
@@ -202,6 +203,7 @@
   {/if}
   {#if options.help}
     <button
+      type="button"
       class="help-button"
       aria-label={$t("forms.common.help")}
       title={$t("forms.common.help")}

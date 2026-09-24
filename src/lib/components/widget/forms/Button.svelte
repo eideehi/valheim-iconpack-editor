@@ -5,6 +5,7 @@
   export let icon: Nullable<Component> = null;
   export let options: {
     disabled?: boolean;
+    type?: "button" | "submit";
     variant?: "danger";
   } = {};
 </script>
@@ -13,6 +14,7 @@
   class="button"
   class:danger={options.variant === "danger"}
   disabled={options.disabled}
+  type={options.type ?? "button"}
   on:click
 >
   {#if icon}
@@ -45,7 +47,7 @@
   }
 
   .button.danger:not([disabled]):hover {
-    @apply border-ui-red bg-ui-red/10 text-ui-red;
+    @apply border-ui-red text-ui-red;
   }
 
   .button.danger:not([disabled]):focus {

@@ -6,6 +6,7 @@
   import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
   import { tick } from "svelte";
   import _ from "~lodash";
+  import { t } from "@/lib/i18n";
   import { iconpack } from "@/lib/utils/automatics-iconpack";
   import SearchBar from "#/widget/common/SearchBar.svelte";
   import Entry from "#/content/iconpack-editor/iconpack-json-view/Entry.svelte";
@@ -19,6 +20,8 @@
   let entriesElement: Nullable<HTMLElement> = null;
   let searchKeyword = "";
 
+  $: hasVisibleEntries = json.some((entry) => isKeywordMatch(entry, searchKeyword));
+
   $: void scrollToSaved(lastSavedEntry);
 
   async function scrollToSaved(saved: Nullable<AutomaticsJsonEntry>): Promise<void> {
@@ -29,7 +32,7 @@
   }
 
   function isKeywordMatch(entry: AutomaticsJsonEntry, keyword: string): boolean {
-    return entry.target.name.includes(keyword);
+    return entry.target.name.toLowerCase().includes(keyword.toLowerCase());
   }
 
   function sort(json: AutomaticsIconPackJson): AutomaticsIconPackJson {
@@ -49,6 +52,11 @@
       </div>
     {/each}
   </div>
+  {#if json.length === 0}
+    <p class="message">{$t("json-view.empty")}</p>
+  {:else if !hasVisibleEntries}
+    <p class="message">{$t("json-view.no-results")}</p>
+  {/if}
 </div>
 
 <style lang="postcss">
@@ -82,5 +90,9 @@
 
   .entry-wrapper:not(.active) {
     @apply hidden;
+  }
+
+  .message {
+    @apply p-4 text-center opacity-50;
   }
 </style>

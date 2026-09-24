@@ -102,7 +102,7 @@
     <!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
     <label class="load-button" role="button" tabindex="0">
       <span>{$t("start-page.load-iconpack.load-iconpack")}</span>
-      <input class="hidden" on:change={onFileChange} type="file" />
+      <input class="hidden" accept=".zip,application/zip" on:change={onFileChange} type="file" />
     </label>
     {#if invalid && error}
       <span class="error">{$t(error)}</span>

@@ -14,15 +14,22 @@
 
   function changeLanguage(newLanguage: Language): void {
     language.set(newLanguage);
+    setActive(false);
   }
 </script>
 
 <div class="language-select" use:clickOutside={() => setActive(false)}>
   <div class="languages" class:active>
-    {#each languages as language (language)}
-      <button class="language" on:click={() => changeLanguage(language)}
-        >{$t(`languages.${language}`)}</button
+    {#each languages as lang (lang)}
+      {@const current = $language === lang}
+      <button
+        class="language"
+        class:current
+        aria-current={current ? "true" : undefined}
+        on:click={() => changeLanguage(lang)}
       >
+        {$t(`languages.${lang}`)}
+      </button>
     {/each}
   </div>
   <button
@@ -53,5 +60,9 @@
 
   .language:hover {
     @apply bg-dark bg-opacity-50;
+  }
+
+  .language.current {
+    @apply font-bold;
   }
 </style>

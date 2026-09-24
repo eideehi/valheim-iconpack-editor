@@ -118,6 +118,7 @@
       {/if}
       {#if !options.required}
         <button
+          type="button"
           class="clear-button"
           aria-label={$t("forms.common.clear-value")}
           title={$t("forms.common.clear-value")}
@@ -129,6 +130,7 @@
     </div>
     <div class="spinner-container">
       <button
+        type="button"
         on:click={() => stepValue(true)}
         aria-label={$t("forms.number-input.increase")}
         title={$t("forms.number-input.increase")}
@@ -136,6 +138,7 @@
         <UpIcon />
       </button>
       <button
+        type="button"
         on:click={() => stepValue(false)}
         aria-label={$t("forms.number-input.decrease")}
         title={$t("forms.number-input.decrease")}
@@ -146,6 +149,7 @@
   </div>
   {#if !options.disabled && !_.isEmpty(options.help)}
     <button
+      type="button"
       class="help-button"
       aria-label={$t("forms.common.help")}
       title={$t("forms.common.help")}

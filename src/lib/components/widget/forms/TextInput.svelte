@@ -88,6 +88,7 @@
     {/if}
     {#if !options.required}
       <button
+        type="button"
         class="clear-button"
         aria-label={$t("forms.common.clear-value")}
         title={$t("forms.common.clear-value")}
@@ -102,6 +103,7 @@
   {/if}
   {#if !options.disabled && options.help}
     <button
+      type="button"
       class="help-button"
       aria-label={$t("forms.common.help")}
       title={$t("forms.common.help")}

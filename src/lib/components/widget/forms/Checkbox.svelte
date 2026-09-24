@@ -5,8 +5,7 @@
   import { theme } from "@/lib/store/theme";
   import { getModal } from "#/modal/Modal.svelte";
   import MarkdownDialogModal from "#/modal/MarkdownDialogModal.svelte";
-  import CheckboxDarkIcon from "~icons/mdi/checkbox-blank";
-  import CheckboxLightIcon from "~icons/mdi/checkbox-blank-outline";
+  import CheckboxOutlineIcon from "~icons/mdi/checkbox-blank-outline";
   import CheckedLightIcon from "~icons/mdi/checkbox-outline";
   import CheckedDarkIcon from "~icons/mdi/checkbox-marked";
   import HelpIcon from "~icons/mingcute/question-line";
@@ -29,12 +28,12 @@
 <MarkdownDialogModal {id} markdown={options.help} />
 
 <div class="checkbox">
-  <button class="checkbox-input" on:click={toggle}>
+  <button type="button" class="checkbox-input" on:click={toggle}>
     <span class="icon">
       {#if value}
         <svelte:component this={$theme === "light" ? CheckedLightIcon : CheckedDarkIcon} />
       {:else}
-        <svelte:component this={$theme === "light" ? CheckboxLightIcon : CheckboxDarkIcon} />
+        <CheckboxOutlineIcon />
       {/if}
     </span>
     {#if label}
@@ -43,6 +42,7 @@
   </button>
   {#if options.help}
     <button
+      type="button"
       class="help-button"
       aria-label={$t("forms.common.help")}
       title={$t("forms.common.help")}

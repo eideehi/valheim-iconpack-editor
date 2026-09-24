@@ -104,7 +104,10 @@
     "entry": {
       "level": "レベル: {{level}}"
     },
-    "search": "エントリを検索"
+    "search": "エントリを検索",
+    "clear-search": "検索をクリア",
+    "empty": "このアイコンパックにはまだエントリがありません。",
+    "no-results": "検索条件に一致するエントリがありません。"
   },
   "confirm-dialog": {
     "ok": "OK",

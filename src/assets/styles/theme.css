@@ -13,7 +13,7 @@
   --text-color-link: 0 153 255;
 
   --ui-color-white: 230 230 230;
-  --ui-color-red: 255 80 80;
+  --ui-color-red: 204 0 0;
   --ui-color-green: 46 204 64;
   --ui-color-blue: 0 153 255;
   --ui-color-yellow: 255 220 0;
@@ -34,7 +34,7 @@ html.dark {
   --text-color-link: 0 102 255;
 
   --ui-color-white: 192 192 192;
-  --ui-color-red: 178 34 34;
+  --ui-color-red: 255 100 100;
   --ui-color-green: 0 128 0;
   --ui-color-blue: 0 102 153;
   --ui-color-yellow: 255 215 0;

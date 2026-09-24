@@ -20,30 +20,37 @@
   }
 
   function create(): void {
+    // Defensive: re-check validity here too, not just via the disabled button.
+    if (createButtonDisabled) return;
     files = iconpack.createIconPack(iconPackName.trim());
   }
 </script>
 
 <div class="create-iconpack">
   <h2 class="caption">{$t("start-page.create-iconpack.caption")}</h2>
-  <TextInput
-    bind:value={iconPackName}
-    label={$t("start-page.create-iconpack.iconpack-name.label")}
-    options={{
-      required: true,
-      help: $t("start-page.create-iconpack.iconpack-name.help"),
-      validation: validateIconPackName,
-    }}
-  />
-  <Button
-    on:click={create}
-    options={{ disabled: createButtonDisabled }}
-    text={$t("start-page.create-iconpack.create-iconpack")}
-  />
+  <form class="form" novalidate on:submit|preventDefault={create}>
+    <TextInput
+      bind:value={iconPackName}
+      label={$t("start-page.create-iconpack.iconpack-name.label")}
+      options={{
+        required: true,
+        help: $t("start-page.create-iconpack.iconpack-name.help"),
+        validation: validateIconPackName,
+      }}
+    />
+    <Button
+      options={{ disabled: createButtonDisabled, type: "submit" }}
+      text={$t("start-page.create-iconpack.create-iconpack")}
+    />
+  </form>
 </div>
 
 <style lang="postcss">
   .create-iconpack {
+    @apply flex flex-col gap-y-4;
+  }
+
+  .form {
     @apply flex flex-col gap-y-4;
   }
 

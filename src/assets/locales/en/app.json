@@ -104,7 +104,10 @@
     "entry": {
       "level": "Lv.{{level}}"
     },
-    "search": "Search entries"
+    "search": "Search entries",
+    "clear-search": "Clear search",
+    "empty": "This icon pack has no entries yet.",
+    "no-results": "No entries match your search."
   },
   "confirm-dialog": {
     "ok": "OK",
