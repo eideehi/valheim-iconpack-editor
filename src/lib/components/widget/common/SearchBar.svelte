@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from "@/lib/i18n";
   import SearchIcon from "~icons/mdi/magnify";
 
   export let keyword: string;
@@ -8,7 +9,13 @@
   <div class="icon">
     <SearchIcon />
   </div>
-  <input class="input" bind:value={keyword} type="text" />
+  <input
+    aria-label={$t("json-view.search")}
+    title={$t("json-view.search")}
+    class="input"
+    bind:value={keyword}
+    type="text"
+  />
 </div>
 
 <style lang="postcss">

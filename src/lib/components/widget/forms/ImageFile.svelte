@@ -162,7 +162,12 @@
     {:else}
       <div class="image-data">
         <div class="preview-wrapper">
-          <button class="clear-button" on:click={clear}>
+          <button
+            class="clear-button"
+            aria-label={$t("forms.image-file.remove")}
+            title={$t("forms.image-file.remove")}
+            on:click={clear}
+          >
             <CrossIcon />
           </button>
           <label class="preview">
@@ -196,7 +201,12 @@
     <span class="error">{$t(error)}</span>
   {/if}
   {#if options.help}
-    <button class="help-button" on:click={() => getModal(id)?.open()}>
+    <button
+      class="help-button"
+      aria-label={$t("forms.common.help")}
+      title={$t("forms.common.help")}
+      on:click={() => getModal(id)?.open()}
+    >
       <HelpIcon />
     </button>
   {/if}
@@ -260,10 +270,12 @@
   }
 
   .help-button {
-    @apply invisible absolute right-0 top-0 text-xl;
+    @apply absolute right-0 top-0 text-xl opacity-50;
   }
 
-  .image-file:hover > .help-button {
-    @apply visible;
+  .image-file:hover > .help-button,
+  .help-button:hover,
+  .help-button:focus-visible {
+    @apply opacity-100;
   }
 </style>

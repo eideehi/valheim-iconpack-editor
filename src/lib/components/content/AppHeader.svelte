@@ -1,33 +1,31 @@
 <script lang="ts">
-  import { header } from "@/lib/store/header";
-  import CloseIcon from "~icons/mingcute/close-fill";
+  import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
+  import Tools from "#/widget/tools/Tools.svelte";
+  import ExportButton from "#/content/iconpack-editor/files-view/ExportButton.svelte";
+
+  export let files: Nullable<VirtualDirectory>;
 </script>
 
-<header class="app-header" class:closed={$header === "hidden"}>
-  <button class="close-button" on:click={() => header.set("hidden")}>
-    <CloseIcon />
-  </button>
+<header class="app-header">
   <h1 class="title">Valheim IconPack Editor</h1>
+  <div class="actions">
+    <Tools />
+    {#if files != null}
+      <ExportButton {files} />
+    {/if}
+  </div>
 </header>
 
 <style lang="postcss">
   .app-header {
-    @apply relative;
+    @apply relative z-10 flex shrink-0 items-center justify-between gap-6 border-b border-base-color px-6 py-3;
   }
 
-  .app-header.closed {
-    @apply hidden;
+  .title {
+    @apply whitespace-nowrap text-lg font-bold;
   }
 
-  .app-header > .close-button {
-    @apply invisible absolute right-4 top-4;
-  }
-
-  .app-header:hover > .close-button {
-    @apply visible;
-  }
-
-  .app-header > .title {
-    @apply py-6 text-center text-3xl font-bold;
+  .actions {
+    @apply flex items-center gap-6;
   }
 </style>

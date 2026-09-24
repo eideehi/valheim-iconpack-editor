@@ -12,16 +12,16 @@
 
 <Modal />
 <div class="valheim-iconpack-editor" class:show-modal={$modal === "show"}>
-  <AppHeader />
-  <main class="main">
-    {#await i18nInitialization() then _}
+  {#await i18nInitialization() then _}
+    <AppHeader {files} />
+    <main class="main">
       {#if files == null}
         <StartPage bind:files />
       {:else}
         <IconPackEditor bind:files />
       {/if}
-    {/await}
-  </main>
+    </main>
+  {/await}
 </div>
 
 <style lang="postcss">
@@ -34,6 +34,6 @@
   }
 
   .main {
-    @apply flex h-full w-full flex-col overflow-auto;
+    @apply flex min-h-0 w-full flex-1 flex-col overflow-auto;
   }
 </style>

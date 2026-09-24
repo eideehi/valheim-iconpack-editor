@@ -5,7 +5,6 @@
     AutomaticsJsonEntry,
   } from "@/lib/utils/automatics-iconpack";
   import type { JsonEditorContext } from "./context";
-  import Tools from "#/widget/tools/Tools.svelte";
   import TargetEditor from "./TargetEditor.svelte";
   import SpriteEditor from "./SpriteEditor.svelte";
   import OptionsEditor from "./OptionsEditor.svelte";
@@ -40,9 +39,6 @@
     <OptionsEditor bind:entry {spriteFile} />
     <Buttons />
   </div>
-  <div class="tools-wrapper">
-    <Tools />
-  </div>
 </div>
 
 <style lang="postcss">
@@ -51,10 +47,6 @@
   }
 
   .editor {
-    @apply flex h-full w-full max-w-[clamp(30rem,60vw,54rem)] flex-col gap-8 p-8 pb-0;
-  }
-
-  .tools-wrapper {
-    @apply mt-8 justify-end;
+    @apply flex h-full w-full max-w-[clamp(30rem,60vw,54rem)] flex-col gap-8 p-8;
   }
 </style>

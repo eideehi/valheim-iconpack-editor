@@ -117,22 +117,40 @@
         <span class="placeholder">{options.placeholder}</span>
       {/if}
       {#if !options.required}
-        <button class="clear-button" on:click={clear}>
+        <button
+          class="clear-button"
+          aria-label={$t("forms.common.clear-value")}
+          title={$t("forms.common.clear-value")}
+          on:click={clear}
+        >
           <CrossIcon />
         </button>
       {/if}
     </div>
     <div class="spinner-container">
-      <button on:click={() => stepValue(true)}>
+      <button
+        on:click={() => stepValue(true)}
+        aria-label={$t("forms.number-input.increase")}
+        title={$t("forms.number-input.increase")}
+      >
         <UpIcon />
       </button>
-      <button on:click={() => stepValue(false)}>
+      <button
+        on:click={() => stepValue(false)}
+        aria-label={$t("forms.number-input.decrease")}
+        title={$t("forms.number-input.decrease")}
+      >
         <DownIcon />
       </button>
     </div>
   </div>
   {#if !options.disabled && !_.isEmpty(options.help)}
-    <button class="help-button" on:click={() => getModal(id)?.open()}>
+    <button
+      class="help-button"
+      aria-label={$t("forms.common.help")}
+      title={$t("forms.common.help")}
+      on:click={() => getModal(id)?.open()}
+    >
       <HelpIcon />
     </button>
   {/if}
@@ -207,11 +225,13 @@
     @apply border-ui-blue;
   }
 
-  .number-input:hover > .help-button {
-    @apply visible;
+  .number-input:hover > .help-button,
+  .help-button:hover,
+  .help-button:focus-visible {
+    @apply opacity-100;
   }
 
   .help-button {
-    @apply invisible absolute right-0 top-0 text-xl;
+    @apply absolute right-0 top-0 text-xl opacity-50;
   }
 </style>

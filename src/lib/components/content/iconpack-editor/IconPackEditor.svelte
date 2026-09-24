@@ -8,7 +8,6 @@
   import { setContext, tick } from "svelte";
   import _ from "~lodash";
   import { t } from "@/lib/i18n";
-  import { header } from "@/lib/store/header";
   import { iconpack } from "@/lib/utils/automatics-iconpack";
   import { iconPackEditorContextKey } from "./context";
   import ConfirmDialog from "#/modal/ConfirmDialog.svelte";
@@ -125,7 +124,7 @@
 
 <svelte:window on:beforeunload={onBeforeUnload} />
 
-<div class="iconpack-editor" class:has-header={$header === "show"}>
+<div class="iconpack-editor">
   <FilesView bind:ref={filesView} {files} />
   <ResizeBar positiveDirection="right" ref={filesView} />
   <JsonEditor bind:entry bind:spriteFile {json} />
@@ -138,9 +137,5 @@
 <style lang="postcss">
   .iconpack-editor {
     @apply flex h-full w-full select-none overflow-hidden;
-  }
-
-  .iconpack-editor.has-header {
-    @apply border-t border-base-color;
   }
 </style>

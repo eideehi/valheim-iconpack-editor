@@ -19,7 +19,9 @@
         "required": "This field is required.",
         "invalid-text-format": "Invalid format.",
         "unsupported-file-format": "File format not supported."
-      }
+      },
+      "help": "Show help",
+      "clear-value": "Clear value"
     },
     "image-file": {
       "select-area": {
@@ -31,7 +33,12 @@
         "filename": "File name",
         "width": "Width",
         "height": "Height"
-      }
+      },
+      "remove": "Remove image"
+    },
+    "number-input": {
+      "increase": "Increase value",
+      "decrease": "Decrease value"
     }
   },
   "start-page": {
@@ -90,15 +97,30 @@
         "message": "Delete the entry \"{{target}}\"? This cannot be undone.",
         "confirm": "Delete"
       }
-    }
+    },
+    "export": "Export .zip"
   },
   "json-view": {
     "entry": {
       "level": "Lv.{{level}}"
-    }
+    },
+    "search": "Search entries"
   },
   "confirm-dialog": {
     "ok": "OK",
     "cancel": "Cancel"
+  },
+  "tools": {
+    "fullscreen": {
+      "enter": "Enter fullscreen",
+      "exit": "Exit fullscreen"
+    },
+    "language": "Select language",
+    "theme": "Toggle theme",
+    "github": "View on GitHub",
+    "licenses": "View licenses"
+  },
+  "dialog": {
+    "close": "Close dialog"
   }
 }

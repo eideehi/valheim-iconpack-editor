@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from "@/lib/i18n";
   import Modal, { getModal } from "#/modal/Modal.svelte";
   import CloseIcon from "~icons/mingcute/close-circle-line";
 
@@ -24,7 +25,12 @@
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="outside" on:click={clickOutside}>
       <div bind:this={dialog} class="dialog">
-        <button class="close-button" on:click={closeModal}>
+        <button
+          class="close-button"
+          aria-label={$t("dialog.close")}
+          title={$t("dialog.close")}
+          on:click={closeModal}
+        >
           <CloseIcon />
         </button>
         <div class="modal-content">

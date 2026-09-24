@@ -19,7 +19,9 @@
         "required": "このフィールドは必須です。",
         "invalid-text-format": "無効なフォーマットです。",
         "unsupported-file-format": "サポートされていないファイル形式です。"
-      }
+      },
+      "help": "ヘルプを表示",
+      "clear-value": "値をクリア"
     },
     "image-file": {
       "select-area": {
@@ -31,7 +33,12 @@
         "filename": "ファイル名",
         "width": "幅",
         "height": "高さ"
-      }
+      },
+      "remove": "画像を削除"
+    },
+    "number-input": {
+      "increase": "値を増やす",
+      "decrease": "値を減らす"
     }
   },
   "start-page": {
@@ -90,15 +97,30 @@
         "message": "エントリ「{{target}}」を削除しますか？この操作は元に戻せません。",
         "confirm": "削除する"
       }
-    }
+    },
+    "export": ".zip をエクスポート"
   },
   "json-view": {
     "entry": {
       "level": "レベル: {{level}}"
-    }
+    },
+    "search": "エントリを検索"
   },
   "confirm-dialog": {
     "ok": "OK",
     "cancel": "キャンセル"
+  },
+  "tools": {
+    "fullscreen": {
+      "enter": "全画面表示にする",
+      "exit": "全画面表示を終了"
+    },
+    "language": "言語を選択",
+    "theme": "テーマを切り替え",
+    "github": "GitHub で表示",
+    "licenses": "ライセンスを表示"
+  },
+  "dialog": {
+    "close": "ダイアログを閉じる"
   }
 }

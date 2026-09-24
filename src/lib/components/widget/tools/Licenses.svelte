@@ -21,7 +21,12 @@
 
 <Modal {id}>
   <div class="modal" use:clickOutside={onClickOutside}>
-    <button class="close-button" on:click={() => getModal(id)?.close()}>
+    <button
+      class="close-button"
+      aria-label={$t("dialog.close")}
+      title={$t("dialog.close")}
+      on:click={() => getModal(id)?.close()}
+    >
       <CloseIcon />
     </button>
     <ul class="license-list">
@@ -57,7 +62,11 @@
 </Modal>
 
 <div bind:this={container} class="licenses">
-  <button on:click={() => getModal(id)?.open()}>
+  <button
+    on:click={() => getModal(id)?.open()}
+    aria-label={$t("tools.licenses")}
+    title={$t("tools.licenses")}
+  >
     <CopyrightIcon />
   </button>
 </div>

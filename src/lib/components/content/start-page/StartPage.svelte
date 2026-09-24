@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { VirtualDirectory } from "@/lib/utils/virtual-file-system";
   import CreateIconPack from "#/content/start-page/CreateIconPack.svelte";
-  import Tools from "#/widget/tools/Tools.svelte";
   import Overview from "#/content/start-page/Overview.svelte";
   import LoadIconPack from "#/content/start-page/LoadIconPack.svelte";
 
@@ -14,7 +13,6 @@
     <CreateIconPack bind:files />
     <LoadIconPack bind:files />
   </div>
-  <Tools />
 </div>
 
 <style lang="postcss">

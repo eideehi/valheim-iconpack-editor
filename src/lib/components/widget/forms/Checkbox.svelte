@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from "@/lib/i18n";
   import { createEventDispatcher } from "svelte";
   import { nanoid } from "nanoid";
   import { theme } from "@/lib/store/theme";
@@ -41,7 +42,12 @@
     {/if}
   </button>
   {#if options.help}
-    <button class="help-button" on:click={() => getModal(id)?.open()}>
+    <button
+      class="help-button"
+      aria-label={$t("forms.common.help")}
+      title={$t("forms.common.help")}
+      on:click={() => getModal(id)?.open()}
+    >
       <HelpIcon />
     </button>
   {/if}
@@ -60,11 +66,13 @@
     @apply text-xl;
   }
 
-  .checkbox:hover > .help-button {
-    @apply visible;
+  .checkbox:hover > .help-button,
+  .help-button:hover,
+  .help-button:focus-visible {
+    @apply opacity-100;
   }
 
   .help-button {
-    @apply invisible absolute right-0 top-0 text-xl;
+    @apply absolute right-0 top-0 text-xl opacity-50;
   }
 </style>

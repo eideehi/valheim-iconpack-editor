@@ -25,7 +25,11 @@
       >
     {/each}
   </div>
-  <button on:click={() => setActive(!active)}>
+  <button
+    on:click={() => setActive(!active)}
+    aria-label={$t("tools.language")}
+    title={$t("tools.language")}
+  >
     <LanguageIcon />
   </button>
 </div>
@@ -36,7 +40,7 @@
   }
 
   .languages {
-    @apply absolute -top-4 left-4 flex w-max -translate-x-1/2 -translate-y-full flex-col gap-0.5 rounded border-2 border-base-color bg-base-color p-2 text-lg shadow;
+    @apply absolute left-1/2 top-full mt-3 flex w-max -translate-x-1/2 flex-col gap-0.5 rounded border-2 border-base-color bg-base-color p-2 text-lg shadow;
   }
 
   .languages:not(.active) {

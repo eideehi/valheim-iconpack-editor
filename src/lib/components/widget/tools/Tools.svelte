@@ -16,6 +16,6 @@
 
 <style lang="postcss">
   .tools {
-    @apply flex items-center justify-center gap-4 py-4 text-2xl;
+    @apply flex items-center justify-center gap-4 text-xl;
   }
 </style>
