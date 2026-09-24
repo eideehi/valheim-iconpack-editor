@@ -5,10 +5,16 @@
   export let icon: Nullable<Component> = null;
   export let options: {
     disabled?: boolean;
+    variant?: "danger";
   } = {};
 </script>
 
-<button {...options} class="button" on:click>
+<button
+  class="button"
+  class:danger={options.variant === "danger"}
+  disabled={options.disabled}
+  on:click
+>
   {#if icon}
     <svelte:component this={icon} />
   {/if}
@@ -31,6 +37,18 @@
   }
 
   .button:not([disabled]):focus {
+    @apply border-ui-blue;
+  }
+
+  .button.danger {
+    @apply border-ui-red text-ui-red;
+  }
+
+  .button.danger:not([disabled]):hover {
+    @apply border-ui-red bg-ui-red/10 text-ui-red;
+  }
+
+  .button.danger:not([disabled]):focus {
     @apply border-ui-blue;
   }
 </style>

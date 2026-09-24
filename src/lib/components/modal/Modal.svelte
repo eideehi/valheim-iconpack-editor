@@ -2,6 +2,7 @@
   import type { ModalApi } from "#/modal/Modal.svelte";
 
   const modals: Record<string, ModalApi> = {};
+  const openStack: string[] = [];
 
   export function getModal(id: string): Nullable<ModalApi> {
     return modals[id];
@@ -22,18 +23,35 @@
     modals[id].close();
   }
 
+  function removeFromStack(): void {
+    const index = openStack.lastIndexOf(id);
+    if (index >= 0) openStack.splice(index, 1);
+  }
+
   export function open(onClose?: Callback): void {
+    removeFromStack();
+    openStack.push(id);
     visible = true;
     modal.set("show");
     onCloseCallback = onClose;
   }
 
   export function close(): void {
+    removeFromStack();
     visible = false;
     modal.set("hidden");
-    if (onCloseCallback != null) {
-      onCloseCallback();
+    const callback = onCloseCallback;
+    onCloseCallback = null;
+    if (callback != null) {
+      callback();
     }
+  }
+
+  function onKeyDown(event: KeyboardEvent): void {
+    if (!visible || event.key !== "Escape" || event.defaultPrevented) return;
+    if (openStack[openStack.length - 1] !== id) return;
+    event.preventDefault();
+    close();
   }
 
   modals[id] = { open, close };
@@ -44,9 +62,12 @@
   }
 
   onDestroy(() => {
+    if (visible) removeFromStack();
     delete modals[id];
   });
 </script>
+
+<svelte:window on:keydown={onKeyDown} />
 
 {#if visible}
   <div class="modal-container" bind:this={container}>

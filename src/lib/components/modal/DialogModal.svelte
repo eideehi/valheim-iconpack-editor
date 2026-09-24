@@ -11,7 +11,7 @@
   }
 
   function clickOutside(event: MouseEvent): void {
-    if (!(event.target instanceof Node)) return;
+    if (dialog == null || !(event.target instanceof Node)) return;
     if (!dialog.contains(event.target)) {
       closeModal();
     }

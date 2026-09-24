@@ -7,10 +7,12 @@
   import AddEntryIcon from "~icons/mdi/content-save-outline";
   import OverwriteIcon from "~icons/mdi/content-save-edit-outline";
   import DeleteIcon from "~icons/mdi/delete-outline";
+  import NewEntryIcon from "~icons/mdi/file-plus-outline";
   import type { JsonEditorContext } from "./context";
   import { jsonEditorContextKey } from "./context";
 
-  const { saveEntry, deleteEntry } = getContext<IconPackEditorContext>(iconPackEditorContextKey);
+  const { saveEntry, newEntry, deleteEntry } =
+    getContext<IconPackEditorContext>(iconPackEditorContextKey);
   const { isValid, isOverwrite } = getContext<JsonEditorContext>(jsonEditorContextKey);
 </script>
 
@@ -20,9 +22,15 @@
       icon={OverwriteIcon}
       on:click={saveEntry}
       options={{ disabled: !$isValid }}
-      text={$t("iconpack-editor.overwrite-entry")}
+      text={$t("iconpack-editor.save-changes")}
     />
-    <Button icon={DeleteIcon} on:click={deleteEntry} text={$t("iconpack-editor.delete-entry")} />
+    <Button icon={NewEntryIcon} on:click={newEntry} text={$t("iconpack-editor.new-entry")} />
+    <Button
+      icon={DeleteIcon}
+      on:click={deleteEntry}
+      options={{ variant: "danger" }}
+      text={$t("iconpack-editor.delete-entry")}
+    />
   {:else}
     <Button
       icon={AddEntryIcon}

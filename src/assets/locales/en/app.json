@@ -78,12 +78,27 @@
       "help": "# Icon scale for small map\n----\nSet the scale of the icons displayed on the mini-map. On the mini-map, icons are resized to 16x16, but by multiplying this display magnification, you can adjust the size of the icons. If the size of the icon is 64x64, setting the display magnification to 4 will make the icon appear as 64x64 even on the mini-map."
     },
     "add-entry": "Add this content",
-    "overwrite-entry": "Overwrite the edits",
-    "delete-entry": "Delete this entry"
+    "save-changes": "Save changes",
+    "delete-entry": "Delete this entry",
+    "new-entry": "New entry",
+    "confirm": {
+      "discard": {
+        "message": "You have unsaved changes. Discard them?",
+        "confirm": "Discard"
+      },
+      "delete": {
+        "message": "Delete the entry \"{{target}}\"? This cannot be undone.",
+        "confirm": "Delete"
+      }
+    }
   },
   "json-view": {
     "entry": {
       "level": "Lv.{{level}}"
     }
+  },
+  "confirm-dialog": {
+    "ok": "OK",
+    "cancel": "Cancel"
   }
 }

@@ -10,6 +10,7 @@
 
   export let files: VirtualDirectory;
   export let entry: AutomaticsJsonEntry;
+  export let selected = false;
 
   const { openEntry } = getContext<IconPackEditorContext>(iconPackEditorContextKey);
 
@@ -35,7 +36,11 @@
   }
 </script>
 
-<button class="entry" on:click={() => openEntry(entry)}>
+<button
+  class="entry"
+  aria-current={selected ? "true" : undefined}
+  on:click={() => openEntry(entry)}
+>
   {#if url}
     <img class="icon" src={url} alt={entry.target.name} />
   {/if}
