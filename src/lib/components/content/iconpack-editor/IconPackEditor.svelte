@@ -21,7 +21,10 @@
   let filesView: Nullable<HTMLElement> = null;
   let jsonView: Nullable<HTMLElement> = null;
   let confirmDialog: {
-    ask(text: string, options?: { confirmLabel?: string; danger?: boolean }): Promise<boolean>;
+    ask(
+      text: string,
+      options?: { confirmLabel?: string; danger?: boolean; cancelable?: boolean }
+    ): Promise<boolean>;
   };
 
   let json: AutomaticsIconPackJson = iconpack.readIconPackJson(files);
@@ -29,6 +32,10 @@
   let entry: AutomaticsJsonEntry = iconpack.defaultJsonEntry();
   let spriteFile: Nullable<VirtualFile> = null;
   let lastSavedEntry: Nullable<AutomaticsJsonEntry> = null;
+
+  // Bumped whenever a new edit session starts so the form is remounted without stale validation
+  // errors left over from the previous entry.
+  let editSession = 0;
 
   let baseline: { entry: AutomaticsJsonEntry; spriteFile: Nullable<VirtualFile> } = {
     entry: _.cloneDeep(entry),
@@ -67,6 +74,7 @@
   function resetForm(): void {
     entry = iconpack.defaultJsonEntry();
     spriteFile = null;
+    editSession += 1;
     resetBaseline();
   }
 
@@ -75,6 +83,7 @@
     entry = { ..._.cloneDeep(target) };
     spriteFile = iconpack.getSpriteFile(files, entry);
     lastSavedEntry = null;
+    editSession += 1;
     resetBaseline();
   }
 
@@ -100,14 +109,48 @@
     resetForm();
   }
 
+  function isSameData(a: ArrayBuffer, b: ArrayBuffer): boolean {
+    if (a.byteLength !== b.byteLength) return false;
+    const bytesA = new Uint8Array(a);
+    const bytesB = new Uint8Array(b);
+    return bytesA.every((byte, i) => byte === bytesB[i]);
+  }
+
+  // Saving adds the sprite by path and replaces any file already there, so a different image under a
+  // path that another entry uses would silently change that entry's icon.
+  function findSpriteConflict(sprite: VirtualFile): Nullable<AutomaticsJsonEntry> {
+    const existing = iconpack.getSpriteFile(files, entry);
+    if (existing == null || existing === sprite || isSameData(existing.data, sprite.data)) {
+      return null;
+    }
+    return json.find(
+      (other) =>
+        !iconpack.isTargetEqual(entry, other) && iconpack.getSpriteFile(files, other) === existing
+    );
+  }
+
+  async function saveEntry(): Promise<void> {
+    if (!spriteFile) return;
+    const conflict = findSpriteConflict(spriteFile);
+    if (conflict != null) {
+      await confirmDialog.ask(
+        $t("iconpack-editor.error.sprite-conflict", {
+          file: entry.sprite.file,
+          target: targetLabel(conflict),
+          interpolation: { escapeValue: false },
+        }),
+        { cancelable: false }
+      );
+      return;
+    }
+    json = [...iconpack.saveJsonEntry(files, json, entry, spriteFile)];
+    files = { ...files };
+    lastSavedEntry = _.cloneDeep(entry);
+    resetForm();
+  }
+
   setContext<IconPackEditorContext>(iconPackEditorContextKey, {
-    saveEntry: () => {
-      if (!spriteFile) return;
-      json = [...iconpack.saveJsonEntry(files, json, entry, spriteFile)];
-      files = { ...files };
-      lastSavedEntry = _.cloneDeep(entry);
-      resetForm();
-    },
+    saveEntry: () => void saveEntry(),
     openEntry: (target) => void openEntry(target),
     newEntry: () => void newEntry(),
     deleteEntry: () => void deleteEntry(),
@@ -127,7 +170,9 @@
 <div class="iconpack-editor">
   <FilesView bind:ref={filesView} {files} />
   <ResizeBar positiveDirection="right" ref={filesView} />
-  <JsonEditor bind:entry bind:spriteFile {json} />
+  {#key editSession}
+    <JsonEditor bind:entry bind:spriteFile {json} />
+  {/key}
   <ResizeBar positiveDirection="left" ref={jsonView} />
   <JsonView bind:ref={jsonView} {activeEntry} {files} {json} {lastSavedEntry} />
 </div>

@@ -10,18 +10,20 @@
   let message = "";
   let confirmLabel = "";
   let danger = false;
+  let cancelable = true;
   let confirmed = false;
   let pending = false;
 
   // Resolves true only when the confirm button is pressed; any other close means cancel.
   export function ask(
     text: string,
-    options: { confirmLabel?: string; danger?: boolean } = {}
+    options: { confirmLabel?: string; danger?: boolean; cancelable?: boolean } = {}
   ): Promise<boolean> {
     if (pending) getModal(id)?.close();
     message = text;
     confirmLabel = options.confirmLabel ?? $t("confirm-dialog.ok");
     danger = options.danger ?? false;
+    cancelable = options.cancelable ?? true;
     confirmed = false;
     return new Promise((resolve) => {
       const modal = getModal(id);
@@ -51,7 +53,9 @@
   <div class="confirm-dialog">
     <p class="message">{message}</p>
     <div class="buttons">
-      <Button on:click={close} text={$t("confirm-dialog.cancel")} />
+      {#if cancelable}
+        <Button on:click={close} text={$t("confirm-dialog.cancel")} />
+      {/if}
       <Button
         on:click={confirm}
         options={{ variant: danger ? "danger" : undefined }}

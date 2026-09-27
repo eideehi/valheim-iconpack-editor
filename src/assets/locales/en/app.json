@@ -98,6 +98,9 @@
         "confirm": "Delete"
       }
     },
+    "error": {
+      "sprite-conflict": "The icon file \"{{file}}\" is already used by the entry \"{{target}}\" with a different image. Change the file name or sub-directory and save again."
+    },
     "export": "Export .zip"
   },
   "json-view": {

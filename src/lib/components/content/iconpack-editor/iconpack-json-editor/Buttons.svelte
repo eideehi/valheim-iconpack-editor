@@ -24,19 +24,21 @@
       options={{ disabled: !$isValid }}
       text={$t("iconpack-editor.save-changes")}
     />
-    <Button icon={NewEntryIcon} on:click={newEntry} text={$t("iconpack-editor.new-entry")} />
-    <Button
-      icon={DeleteIcon}
-      on:click={deleteEntry}
-      options={{ variant: "danger" }}
-      text={$t("iconpack-editor.delete-entry")}
-    />
   {:else}
     <Button
       icon={AddEntryIcon}
       on:click={saveEntry}
       options={{ disabled: !$isValid }}
       text={$t("iconpack-editor.add-entry")}
+    />
+  {/if}
+  <Button icon={NewEntryIcon} on:click={newEntry} text={$t("iconpack-editor.new-entry")} />
+  {#if $isOverwrite}
+    <Button
+      icon={DeleteIcon}
+      on:click={deleteEntry}
+      options={{ variant: "danger" }}
+      text={$t("iconpack-editor.delete-entry")}
     />
   {/if}
 </div>
